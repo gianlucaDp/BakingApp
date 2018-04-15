@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Baking App</string>
+    <string name="appwidget_text">Baking App Widget</string>
+    <string name="generic_error">Should not happen</string>
+    <string name="no_recipe_selected">No recipe Selected</string>
+    <string name="none">None</string>
+    <string name="serving">Servings:</string>
+    <string name="no_internet_warning">No Internet Connection Found, Swipe up to try again</string>
+    <string name="no_internet_warning_step">No Internet Connection Found, please check and try again</string>
+
+    <string name="step_image">Step image</string>
+    <string name="recipe_image">Recipe image</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="backward">Backward</string>
+    <string name="forward">Forward</string>
+
+</resources>
