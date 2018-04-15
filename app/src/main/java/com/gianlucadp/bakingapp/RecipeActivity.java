@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.gianlucadp.bakingapp.models.Recipe;
@@ -24,6 +25,7 @@ public class RecipeActivity extends AppCompatActivity implements RecipeFragment.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SharedPreferences prefs = this.getSharedPreferences(Constants.APP_SHARED_PREFS, Context.MODE_PRIVATE);
         this.setTitle(Constants.DEFAULT_TITLE + ": " + prefs.getString(Constants.LAST_RECIPE_CLICKED_PREF, ""));
         //The element that is present on bigger screen and not in smaller one is the line separator
@@ -52,6 +54,7 @@ public class RecipeActivity extends AppCompatActivity implements RecipeFragment.
                 mRecipeFragment.setLastViewedStep(-1);
             }
         }
+
         mRecipeFragment.setStepsList(mCurrentRecipe.getSteps());
         mRecipeFragment.setIngredients(mCurrentRecipe.getIngredients());
 
@@ -122,6 +125,16 @@ public class RecipeActivity extends AppCompatActivity implements RecipeFragment.
     public void OnNoInternetAvailable() {
         Toast.makeText(this, getString(R.string.no_internet_warning_step), Toast.LENGTH_LONG).show();
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

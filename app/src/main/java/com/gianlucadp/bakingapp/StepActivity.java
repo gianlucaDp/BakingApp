@@ -35,7 +35,10 @@ public class StepActivity extends AppCompatActivity implements StepFragment.OnSt
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getSupportActionBar().hide();
-        };
+        }else{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        }
 
         setContentView(R.layout.activity_step);
         SharedPreferences prefs = this.getSharedPreferences(Constants.APP_SHARED_PREFS, Context.MODE_PRIVATE);
@@ -73,6 +76,7 @@ public class StepActivity extends AppCompatActivity implements StepFragment.OnSt
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
+
         if (itemThatWasClickedId == R.id.action_forward) {
             moveToNextStep();
             return true;
@@ -83,6 +87,12 @@ public class StepActivity extends AppCompatActivity implements StepFragment.OnSt
             moveToPreviousStep();
             return true;
         }
+
+        if (itemThatWasClickedId == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -150,5 +160,7 @@ public class StepActivity extends AppCompatActivity implements StepFragment.OnSt
         Toast.makeText(this, getString(R.string.no_internet_warning_step), Toast.LENGTH_LONG).show();
         finish();
     }
+
+
 }
 

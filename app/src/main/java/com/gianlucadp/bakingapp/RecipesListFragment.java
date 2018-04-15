@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.gianlucadp.bakingapp.models.Ingredient;
 import com.gianlucadp.bakingapp.models.Recipe;
 import com.gianlucadp.bakingapp.utils.Constants;
+import com.gianlucadp.bakingapp.utils.JSonUtils;
 import com.gianlucadp.bakingapp.utils.NetworkUtils;
 import com.google.gson.Gson;
 
@@ -140,8 +141,8 @@ public class RecipesListFragment extends Fragment {
         for (Recipe recipe : recipes) {
             ingredientsMap.put(recipe.getName(), recipe.getIngredients());
         }
-        Gson gson = new Gson();
-        String hashMapString = gson.toJson(ingredientsMap);
+
+        String hashMapString = JSonUtils.serialize(ingredientsMap);
         SharedPreferences prefs = getContext().getSharedPreferences(Constants.APP_SHARED_PREFS, MODE_PRIVATE);
         prefs.edit().putString(Constants.INGREDIENTS_PREF, hashMapString).apply();
     }

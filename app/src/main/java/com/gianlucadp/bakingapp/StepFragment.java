@@ -160,8 +160,6 @@ public class StepFragment extends Fragment {
             if (mStep.getVideoURL() != null && !mStep.getVideoURL().isEmpty()) {
                 mStepImage.setVisibility(View.GONE);
                 initializePlayer(Uri.parse(mStep.getVideoURL()), savedInstanceState);
-            } else if (mStep.getThumbnailURL() != null && mStep.getThumbnailURL().endsWith("mp4")) {
-                initializePlayer(Uri.parse(mStep.getThumbnailURL()), savedInstanceState);
             } else {
                 mPlayerView.setVisibility(View.GONE);
             }
@@ -195,15 +193,22 @@ public class StepFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (mExoPlayer != null) {
-            mExoPlayer.setPlayWhenReady(true);
-        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         if (mExoPlayer != null) {
+            mExoPlayer.release();
+            mExoPlayer.setPlayWhenReady(false);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mExoPlayer != null) {
+            mExoPlayer.release();
             mExoPlayer.setPlayWhenReady(false);
         }
     }
@@ -213,6 +218,8 @@ public class StepFragment extends Fragment {
         currentState.putParcelable(Constants.INTENT_STEP, mStep);
         if (mExoPlayer != null) {
             currentState.putLong(Constants.VIDEO_TIME, mExoPlayer.getCurrentPosition());
+
+            currentState.putBoolean(Constants.VIDEO_STATUS, mExoPlayer.getPlayWhenReady());
         }
 
     }
@@ -237,9 +244,12 @@ public class StepFragment extends Fragment {
                     getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
             mExoPlayer.prepare(mediaSource);
             if (savedInstanceState != null) {
-                mExoPlayer.seekTo(savedInstanceState.getLong("video_time"));
+                mExoPlayer.seekTo(savedInstanceState.getLong(Constants.VIDEO_TIME));
+                mExoPlayer.setPlayWhenReady(savedInstanceState.getBoolean(Constants.VIDEO_STATUS));
+            }else{
+                mExoPlayer.setPlayWhenReady(true);
             }
-            mExoPlayer.setPlayWhenReady(true);
+
         }
     }
 

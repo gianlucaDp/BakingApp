@@ -17,6 +17,8 @@ public class Constants {
     public static final String STEP_POSITION ="step_position";
     public static final int REQUEST_POSITION_CODE = 111;
     public static final String VIDEO_TIME = "video_time";
+    public static final String VIDEO_STATUS = "video_status";
+    public static final String CURRENT_RECIPE_INSTANCE = "current_recipe";
 
     public enum DIRECTION{LEFT_TO_RIGHT, RIGHT_TO_LEFT};
 

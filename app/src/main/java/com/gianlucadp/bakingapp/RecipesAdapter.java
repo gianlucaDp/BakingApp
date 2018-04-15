@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gianlucadp.bakingapp.models.Recipe;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -79,7 +80,10 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         public void loadRecipe(int position) {
             if (recipesList != null && recipesList.size()>= position) {
             Recipe currentRecipe = recipesList.get(position);
-            mTextViewRecipeName.setText(currentRecipe.getName());
+            if (!currentRecipe.getImage().isEmpty()) {
+                Picasso.with(context).load(currentRecipe.getImage()).placeholder(R.drawable.ic_restaurant_menu).error(R.drawable.ic_restaurant_menu).into(mImageViewRecipeFigure);
+            }
+                mTextViewRecipeName.setText(currentRecipe.getName());
             String serving = context.getString(R.string.serving) + String.valueOf(currentRecipe.getServings());
             mTextViewRecipeServingNumb.setText(serving);
 

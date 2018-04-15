@@ -19,8 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecipeActivity" />
-        <activity android:name=".StepActivity" />
+        <activity android:name=".RecipeActivity"
+            android:parentActivityName="com.gianlucadp.bakingapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gianlucadp.bakingapp.MainActivity" />
+        </activity>
+        <activity android:name=".StepActivity"
+            android:parentActivityName="com.gianlucadp.bakingapp.RecipeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gianlucadp.bakingapp.RecipeActivity" />
+        </activity>
 
         <receiver android:name=".IngredientsWidgetProvider">
             <intent-filter>
