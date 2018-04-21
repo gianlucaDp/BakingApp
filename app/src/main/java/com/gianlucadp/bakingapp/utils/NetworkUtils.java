@@ -44,7 +44,13 @@ public class NetworkUtils{
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                 if (response.isSuccessful() && instance!=null) {
+                    try {
+
+
                     instance.updateRecipesList(response.body());
+                    }catch(Exception e){
+                        Log.d(getClass().getName(),"Something went wrong");
+                    }
                     if (idlingResource!=null){
                         idlingResource.setIdleState(true);
                     }

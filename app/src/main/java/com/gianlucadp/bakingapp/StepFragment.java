@@ -200,7 +200,6 @@ public class StepFragment extends Fragment {
         super.onPause();
         if (mExoPlayer != null) {
             mExoPlayer.release();
-            mExoPlayer.setPlayWhenReady(false);
         }
     }
 
@@ -209,7 +208,6 @@ public class StepFragment extends Fragment {
         super.onStop();
         if (mExoPlayer != null) {
             mExoPlayer.release();
-            mExoPlayer.setPlayWhenReady(false);
         }
     }
 
