@@ -1,7 +1,7 @@
 # Baking App
 Project for the Android Developer Nanodegree Program
 ## Project Overview
-The Popular Movie app show you a list of recipes, each one containing the list of the ingredients and the steps required to prepare it
+The Baking app shows you a list of recipes, each one containing the list of the ingredients and the steps required to prepare it
 
 ## Project Details
 Purpose of the project:
