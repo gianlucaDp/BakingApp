@@ -1,5 +1,5 @@
 # Baking App
-Project for the Android Developer Nanodegree Program
+Project for the Udacity's Android Developer Nanodegree Program
 ## Project Overview
 The Baking app shows you a list of recipes, each one containing the list of the ingredients and the steps required to prepare it
 
